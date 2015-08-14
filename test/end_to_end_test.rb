@@ -32,12 +32,34 @@ Words: 20
       (dir / "post2.md").write(post2_content)
     end
 
+#     def post1_content
+#       <<-EOF
+# ---
+# layout: post
+# title: Post 1
+# ---
+# This is some basic post test.
+#
+# Here's another paragraph.
+#       EOF
+#     end
+#
+#     def post2_content
+#       <<-EOF
+# ---
+# layout: post
+# title: Post 2
+# ---
+# This is another post.
+#
+# It has another paragraph.
+#
+# And then another.
+#       EOF
+#     end
+
     def post1_content
       <<-EOF
----
-layout: post
-title: Post 1
----
 This is some basic post test.
 
 Here's another paragraph.
@@ -46,10 +68,6 @@ Here's another paragraph.
 
     def post2_content
       <<-EOF
----
-layout: post
-title: Post 2
----
 This is another post.
 
 It has another paragraph.
