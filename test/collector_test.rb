@@ -22,18 +22,18 @@ How about a hyphenated-word?  Extra punctuation?!?!?!
       stats = collect_from(input)
       assert_equal(19, stats.word_count)
     end
-#
-#     def test_skips_yaml_front_matter
-#       input = <<-EOF
-# ---
-# field: value
-# other_field: other_value
-# ---
-# two words
-#       EOF
-#       stats = collect_from(input)
-#       assert_equal(2, stats.word_count)
-#     end
+
+    def test_skips_yaml_front_matter
+      input = <<-EOF
+---
+field: value
+other_field: other_value
+---
+two words
+      EOF
+      stats = collect_from(input)
+      assert_equal(2, stats.word_count)
+    end
 
     def test_counts_only_hyperlink_text
       input = "[Some hyperlink text](http://example.com)"

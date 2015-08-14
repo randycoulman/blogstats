@@ -7,18 +7,35 @@ module Blogstats
     end
 
     def initialize(input)
-      @stats = collect_stats(input)
+      @input = input.each_line
+      @stats = collect_stats
     end
 
     attr_reader :stats
 
     private
 
-    def collect_stats(input)
+    attr_reader :input
+
+    def collect_stats
       stats = Stats.new
       stats.add_post
-      input.each_line.each_with_object(stats) do |line, stats|
+
+      skip_yaml_front_matter
+      while true
+        line = input.next
         stats.add_words(line.split.count)
+      end
+    rescue StopIteration
+      return stats
+    end
+
+    def skip_yaml_front_matter
+      return unless input.peek =~ /^---/
+      input.next
+
+      while input.next !~ /^---/
+        # Skip
       end
     end
   end
