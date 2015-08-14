@@ -34,5 +34,12 @@ How about a hyphenated-word?  Extra punctuation?!?!?!
 #       stats = collect_from(input)
 #       assert_equal(2, stats.word_count)
 #     end
+
+    def test_counts_only_hyperlink_text
+      input = "[Some hyperlink text](http://example.com)"
+      stats = collect_from(input)
+
+      assert_equal(3, stats.word_count)
+    end
   end
 end

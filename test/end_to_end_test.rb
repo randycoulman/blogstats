@@ -62,7 +62,7 @@ Words: 20
       <<-EOF
 This is some basic post test.
 
-Here's another paragraph.
+Here's [a hyperlink](http://example.com).
       EOF
     end
 
