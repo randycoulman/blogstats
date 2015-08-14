@@ -29,6 +29,7 @@ Words: 20
 
     def create_sample_files(dir)
       (dir / "post1.md").write(post1_content)
+      (dir / "post2.md").write(post2_content)
     end
 
     def post1_content
