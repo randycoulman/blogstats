@@ -1,5 +1,2 @@
+require "blogstats/cli"
 require "blogstats/version"
-
-module Blogstats
-  # Your code goes here...
-end

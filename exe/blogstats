@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 
 require "blogstats"
+
+Blogstats::CLI.run
