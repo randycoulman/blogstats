@@ -40,7 +40,13 @@ title: Post 1
 ---
 This is some basic post test.
 
+{% codeblock This is a code block lang:ruby %}
+{% endcodeblock %}
+
 Here's another paragraph.
+
+{% codeblock Another code block lang:ruby %}
+{% endcodeblock %}
       EOF
     end
 
@@ -52,7 +58,11 @@ title: Post 2
 ---
 This is another post.
 
+{% youtube some_id %}
+
 It has another paragraph.
+
+{% img center /path/to/image.png 400 300 Caption AltText %}
 
 And then another.
       EOF

@@ -29,10 +29,9 @@ How about a hyphenated-word?  Extra punctuation?!?!?!
 field: value
 other_field: other_value
 ---
-two words
       EOF
       stats = collect_from(input)
-      assert_equal(2, stats.word_count)
+      assert_equal(0, stats.word_count)
     end
 
     def test_counts_only_hyperlink_text
@@ -40,6 +39,27 @@ two words
       stats = collect_from(input)
 
       assert_equal(3, stats.word_count)
+    end
+
+    def test_skips_code_block_fences
+      input = <<-EOF
+{% codeblock This is a codeblock lang:ruby %}
+{% endcodeblock %}
+      EOF
+      stats = collect_from(input)
+      assert_equal(0, stats.word_count)
+    end
+
+    def test_skips_youtube_links
+      input = "{% youtube some_id %}"
+      stats = collect_from(input)
+      assert_equal(0, stats.word_count)
+    end
+
+    def test_skips_image_links
+      input = "{% img center /path/image.png 250 200 Caption Alt-text %}"
+      stats = collect_from(input)
+      assert_equal(0, stats.word_count)
     end
   end
 end

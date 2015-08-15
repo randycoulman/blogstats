@@ -22,8 +22,9 @@ module Blogstats
       stats.add_post
 
       skip_yaml_front_matter
-      while true
-        line = input.next
+      while line = input.next.strip
+        next if line =~ /^\{% .* %\}/
+
         stats.add_words(line.split.count)
       end
     rescue StopIteration
