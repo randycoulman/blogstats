@@ -15,8 +15,9 @@ module Blogstats
 
     def test_end_to_end
       expected_output = <<-EOF
-Posts: 2
-Words: 20
+Posts:  2
+Words:  20
+Videos: 1
       EOF
       assert_output(expected_output, "") do
         CLI.run([dir])

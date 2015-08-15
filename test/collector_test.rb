@@ -50,10 +50,11 @@ other_field: other_value
       assert_equal(0, stats.word_count)
     end
 
-    def test_skips_youtube_links
+    def test_counts_videos
       input = "{% youtube some_id %}"
       stats = collect_from(input)
       assert_equal(0, stats.word_count)
+      assert_equal(1, stats.videos)
     end
 
     def test_skips_image_links

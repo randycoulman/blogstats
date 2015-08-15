@@ -8,7 +8,8 @@ module Blogstats
 
     def initialize(input)
       @input = input.each_line
-      @stats = collect_stats
+      @stats = Stats.new
+      collect_stats
     end
 
     attr_reader :stats
@@ -18,17 +19,24 @@ module Blogstats
     attr_reader :input
 
     def collect_stats
-      stats = Stats.new
       stats.add_post
 
       skip_yaml_front_matter
       while line = input.next.strip
-        next if line =~ /^\{% .* %\}/
-
-        stats.add_words(line.split.count)
+        process_line(line)
       end
     rescue StopIteration
-      return stats
+    end
+
+    def process_line(line)
+      case line
+        when /^\{%\s+youtube.*%\}/
+          stats.add_video
+        when /^\{% .* %\}/
+          return
+        else
+          stats.add_words(line.split.count)
+      end
     end
 
     def skip_yaml_front_matter
