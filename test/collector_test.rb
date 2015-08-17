@@ -41,6 +41,16 @@ other_field: other_value
       assert_equal(3, stats.word_count)
     end
 
+    def test_skips_reference_style_links
+      input = <<-EOF
+[Some hyperlink text][reference]
+   [reference]: http://example.com "Title"
+EOF
+      stats = collect_from(input)
+
+      assert_equal(3, stats.word_count)
+    end
+
     def test_counts_lines_of_code
       input = <<-EOF
 {% codeblock This is a codeblock lang:ruby %}

@@ -83,11 +83,13 @@ This is another post.
 
 {% youtube some_id %}
 
-It has another paragraph.
+It has [another paragraph](http://example.com).
 
 {% img center /path/to/image.png 400 300 Caption AltText %}
 
-And then another.
+And [then another][reference].
+
+[reference]: http://example.com "Optional Title"
       EOF
     end
   end

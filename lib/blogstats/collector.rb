@@ -23,6 +23,7 @@ module Blogstats
     VIDEO_TAG = /^\{%\s+youtube.*%\}$/
     IMAGE_TAG = /^\{%\s+img.*%\}$/
     OTHER_JEKYLL_TAG = /^\{% .* %\}$/
+    REFERENCE_STYLE_LINK = /^\[.+\]:/
 
     def collect_stats
       skip_yaml_front_matter
@@ -55,6 +56,8 @@ module Blogstats
         when IMAGE_TAG
           stats.add_image
         when OTHER_JEKYLL_TAG
+          return
+        when REFERENCE_STYLE_LINK
           return
         else
           stats.add_words(line.split.count)
