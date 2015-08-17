@@ -23,6 +23,8 @@ module Blogstats
 
       skip_yaml_front_matter
       while line = input.next.strip
+        next if line =~ /^\{%\s+codeblock.*%\}/ .. line =~ /^\{%\s+endcodeblock.*%\}/
+
         process_line(line)
       end
     rescue StopIteration

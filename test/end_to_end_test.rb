@@ -43,6 +43,11 @@ title: Post 1
 This is some basic post test.
 
 {% codeblock This is a code block lang:ruby %}
+class Foo
+  def bar
+    puts "Hello, world!"
+  end
+end
 {% endcodeblock %}
 
 Here's another paragraph.
@@ -50,6 +55,19 @@ Here's another paragraph.
 {% img center /path/to/image.png 400 300 Caption AltText %}
 
 {% codeblock Another code block lang:ruby %}
+require "minitest/autorun"
+
+class FooTest < Minitest::Test
+  def setup
+    @foo = Foo.new
+  end
+
+  attr_reader :foo
+
+  def test_bars
+    assert_equal("Hello, world!", foo.bar)
+  end
+end
 {% endcodeblock %}
       EOF
     end
