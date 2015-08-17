@@ -9,8 +9,10 @@ module Blogstats
 
     def run(args = ARGV)
       directory = Pathname.new(args.empty? ? Dir.getwd : args.first)
-      stats = directory.each_child.reject(&:directory?).map { |file| stats_for(file) }.reduce(&:merge)
-      puts stats
+      puts directory.each_child
+             .reject(&:directory?)
+             .map(&method(:stats_for))
+             .reduce(&:merge)
     end
 
     private
