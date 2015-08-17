@@ -17,6 +17,7 @@ module Blogstats
       expected_output = <<-EOF
 Posts:  2
 Words:  20
+LOC:    18
 Images: 2
 Videos: 1
       EOF

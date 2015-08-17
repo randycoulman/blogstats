@@ -18,25 +18,35 @@ module Blogstats
 
     attr_reader :input
 
+    JEKYLL_TAG = /^\{% .* %\}$/
+
     def collect_stats
       stats.add_post
 
       skip_yaml_front_matter
       while line = input.next.strip
-        next if line =~ /^\{%\s+codeblock.*%\}/ .. line =~ /^\{%\s+endcodeblock.*%\}/
-
-        process_line(line)
+        if line =~ /^\{%\s+codeblock.*%\}$/ .. line =~ /^\{%\s+endcodeblock.*%\}$/
+          process_loc(line)
+        else
+          process_line(line)
+        end
       end
     rescue StopIteration
     end
 
+    def process_loc(line)
+      return if line =~ JEKYLL_TAG
+
+      stats.add_loc
+    end
+
     def process_line(line)
       case line
-        when /^\{%\s+youtube.*%\}/
+        when /^\{%\s+youtube.*%\}$/
           stats.add_video
-        when /^\{%\s+img.*%\}/
+        when /^\{%\s+img.*%\}$/
           stats.add_image
-        when /^\{% .* %\}/
+        when JEKYLL_TAG
           return
         else
           stats.add_words(line.split.count)

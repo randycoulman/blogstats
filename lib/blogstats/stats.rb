@@ -6,6 +6,7 @@ module Blogstats
       super
       self.post_count ||= 0
       self.word_count ||= 0
+      self.loc ||= 0
       self.images ||= 0
       self.videos ||= 0
     end
@@ -16,6 +17,10 @@ module Blogstats
 
     def add_words(words)
       self.word_count += words
+    end
+
+    def add_loc
+      self.loc += 1
     end
 
     def add_image
@@ -37,6 +42,7 @@ module Blogstats
       <<-EOF
 Posts:  #{post_count}
 Words:  #{word_count}
+LOC:    #{loc}
 Images: #{images}
 Videos: #{videos}
       EOF

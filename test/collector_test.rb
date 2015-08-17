@@ -41,7 +41,7 @@ other_field: other_value
       assert_equal(3, stats.word_count)
     end
 
-    def test_skips_code_blocks
+    def test_counts_lines_of_code
       input = <<-EOF
 {% codeblock This is a codeblock lang:ruby %}
 puts "Here is some Ruby code"
@@ -49,6 +49,7 @@ puts "Here is some Ruby code"
       EOF
       stats = collect_from(input)
       assert_equal(0, stats.word_count)
+      assert_equal(1, stats.loc)
     end
 
     def test_counts_videos
