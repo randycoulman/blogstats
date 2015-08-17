@@ -32,6 +32,8 @@ module Blogstats
       case line
         when /^\{%\s+youtube.*%\}/
           stats.add_video
+        when /^\{%\s+img.*%\}/
+          stats.add_image
         when /^\{% .* %\}/
           return
         else

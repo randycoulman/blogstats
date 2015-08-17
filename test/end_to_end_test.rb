@@ -17,6 +17,7 @@ module Blogstats
       expected_output = <<-EOF
 Posts:  2
 Words:  20
+Images: 2
 Videos: 1
       EOF
       assert_output(expected_output, "") do
@@ -45,6 +46,8 @@ This is some basic post test.
 {% endcodeblock %}
 
 Here's another paragraph.
+
+{% img center /path/to/image.png 400 300 Caption AltText %}
 
 {% codeblock Another code block lang:ruby %}
 {% endcodeblock %}

@@ -57,10 +57,11 @@ other_field: other_value
       assert_equal(1, stats.videos)
     end
 
-    def test_skips_image_links
+    def test_counts_image_links
       input = "{% img center /path/image.png 250 200 Caption Alt-text %}"
       stats = collect_from(input)
       assert_equal(0, stats.word_count)
+      assert_equal(1, stats.images)
     end
   end
 end
