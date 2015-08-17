@@ -5,7 +5,7 @@ require "tmpdir"
 module Blogstats
   class EndToEndTest < Minitest::Test
     def setup
-      @dir = Pathname.new(Dir.tmpdir)
+      @dir = Pathname.new(Dir.mktmpdir)
       create_sample_files(dir)
     end
 
